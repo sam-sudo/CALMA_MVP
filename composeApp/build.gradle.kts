@@ -35,8 +35,14 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+
+            //Ktor
             implementation(libs.ktor.client.okhttp)
-            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.ktor.android)
+
+            //Coroutines
+            implementation(libs.kotlinx.coroutines.core)
+            //koin
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
@@ -52,9 +58,10 @@ kotlin {
 
             //ktor
             implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.content.negotiatation)
 
-            //Corutines
-            implementation(libs.ktor.client.core)
+            //Coroutines
             implementation(libs.kotlinx.coroutines.core)
 
             //Koin

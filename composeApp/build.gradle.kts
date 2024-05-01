@@ -44,6 +44,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             //koin
             implementation(libs.koin.android)
+            implementation(libs.koin.compose)
         }
         commonMain.dependencies {
             implementation(libs.voyager.navigator)

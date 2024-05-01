@@ -1,4 +1,4 @@
-package presentation.TabBar
+package presentation.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
@@ -15,8 +15,10 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import presentation.navigation.tabs.ActivitiesTab
+import presentation.navigation.tabs.HomeTab
 
-class TabBarScreen : Screen {
+class BottomBarScreen : Screen {
 
     @Composable
     override fun Content() {
@@ -26,7 +28,7 @@ class TabBarScreen : Screen {
             tabDisposable = {
                 TabDisposable(
                     it,
-                    listOf(HomeTab, HomeTab2)
+                    listOf(HomeTab, ActivitiesTab)
                 )
             }
         ) {
@@ -38,7 +40,7 @@ class TabBarScreen : Screen {
                     BottomNavigation(
                     ) {
                         TabNavigationItem(HomeTab)
-                        TabNavigationItem(HomeTab2)
+                        TabNavigationItem(ActivitiesTab)
                     }
                 },
 

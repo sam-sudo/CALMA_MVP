@@ -1,22 +1,22 @@
-package presentation.TabBar
+package presentation.navigation.tabs
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import presentation.Activities.ActivitiesScreen
+import presentation.main.MainScreen
 
-object HomeTab2 : Tab {
+object HomeTab : Tab {
 
     override val options: TabOptions
         @Composable
         get() {
             val title = "HOME TAB"
-            val icon = rememberVectorPainter(Icons.Filled.AccountBox)
+            val icon = rememberVectorPainter(Icons.Default.Home)
 
             return remember {
                 TabOptions(
@@ -30,6 +30,6 @@ object HomeTab2 : Tab {
     @Composable
     override fun Content() {
         val tabNavigator = LocalTabNavigator.current
-        ActivitiesScreen(tabNavigator)
+        MainScreen(tabNavigator)
     }
 }

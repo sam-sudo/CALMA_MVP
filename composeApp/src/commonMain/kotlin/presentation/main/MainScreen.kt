@@ -1,23 +1,29 @@
 package presentation.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.navigator.Navigator
+import androidx.compose.ui.graphics.Color
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import presentation.TabBar.HomeTab2
+import presentation.navigation.tabs.ActivitiesTab
 
 @Composable
 fun MainScreen(tabNavigator: TabNavigator){
-    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(color = Color.Gray),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text("MainScreen")
         Button(
             onClick = {
-                tabNavigator.current = HomeTab2
+                tabNavigator.current = ActivitiesTab
             },
             content = {
                 Text("Go Activities screen!")

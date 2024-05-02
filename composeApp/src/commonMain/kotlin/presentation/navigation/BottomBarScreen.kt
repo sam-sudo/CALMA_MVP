@@ -50,7 +50,6 @@ class BottomBarScreen : Screen {
 
 }
 
-
 @Composable
 private fun RowScope.TabNavigationItem(tab: Tab) {
     val tabNavigator = LocalTabNavigator.current

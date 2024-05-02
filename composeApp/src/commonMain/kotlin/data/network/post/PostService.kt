@@ -1,5 +1,6 @@
-package data.network
+package data.network.post
 
+import data.network.KtorApi
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 

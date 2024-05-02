@@ -1,15 +1,15 @@
 package data.repository
 
-import data.network.NetworkDatasource
-import data.util.asExternalModel
+import data.network.post.RemoteDataSource
 import domain.model.Post
 import domain.repository.PostRepository
 
 class PostRepositoryImpl(
-    private val networkDatasource: NetworkDatasource
-) : PostRepository{
+    private val remoteDataSource: RemoteDataSource,
+
+    ) : PostRepository{
     override suspend fun getPosts(): List<Post> {
-        return networkDatasource.getPosts().map { it.asExternalModel() }
+        return remoteDataSource.getPost()
     }
 
 }

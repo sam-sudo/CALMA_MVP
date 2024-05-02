@@ -56,6 +56,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(libs.io.arrow.core)
+            implementation(libs.io.arrow.fx.corrutines)
 
             //ktor
             implementation(libs.ktor.client.core)

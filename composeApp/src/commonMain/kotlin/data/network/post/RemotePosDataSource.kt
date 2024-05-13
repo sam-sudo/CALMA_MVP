@@ -10,7 +10,7 @@ class RemotePostDataSource(
     private val dispatcher: Dispatcher,
 ): RemoteDataSource {
     override suspend fun getPost(): List<Post> = withContext(dispatcher.ioDispatcher){
-        api.getPosts().map { it.asExternalModel() }
+        return@withContext api.getPosts().map { it.asExternalModel() }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ck.calma.post
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import domain.model.Post
@@ -23,9 +24,15 @@ class PostViewModel(
     private fun updatePosts(){
         viewModelScope.launch {
             val posts = getPostsUseCase()
-            _uiState.update {
-                it.copy(posts = posts)
+            posts.onRight {
+                list ->
+                _uiState.update {
+                    it.copy(posts = list)
+                }
+            }.onLeft {
+                Log.e("TAG", "updatePosts: $it", )
             }
+
         }
     }
 

@@ -69,6 +69,12 @@ kotlin {
 
             //Koin
             api(libs.koin.core)
+
+            //mvvm kmp (moko mvvm)
+            implementation(libs.mvvm.core)
+
+            //image loader
+            api(libs.image.loader)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

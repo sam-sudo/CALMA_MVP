@@ -20,6 +20,8 @@ ktor = "2.3.10"
 koin = "3.2.0"
 coroutines = "1.8.0"
 lifecycleViewmodelKtx = "2.7.0"
+imageLoader = "1.7.8"
+mvvmCore = "0.16.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -50,7 +52,8 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 io-arrow-fx-corrutines = { group = "io.arrow-kt", name = "arrow-fx-coroutines", version.ref = "arrow" }
 io-arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
-
+mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCore" }
+image-loader = { module = "io.github.qdsfdhvh:image-loader", version.ref = "imageLoader" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

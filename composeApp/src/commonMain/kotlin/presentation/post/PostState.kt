@@ -1,4 +1,4 @@
-package com.ck.calma.post
+package presentation.post
 
 import domain.model.Post
 

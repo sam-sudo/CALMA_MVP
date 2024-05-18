@@ -1,6 +1,5 @@
-package com.ck.calma.post
+package presentation.post
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,15 +19,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
+import data.util.toColor
 import domain.model.Post
-import org.koin.androidx.compose.koinViewModel
+import domain.use_cases.GetPostsUseCase
 
 @Composable
 fun PostScreen(
     modifier: Modifier = Modifier
 ) {
-    val viewModel: PostViewModel = koinViewModel()
+    val viewModel: PostViewModel = PostViewModel(GetPostsUseCase())
     val state = viewModel.uiState.collectAsState()
 
     Surface(
@@ -62,7 +61,7 @@ fun PostItem(
         modifier = modifier
             .fillMaxSize()
             .clip(RoundedCornerShape(10.dp)),
-        backgroundColor = Color(color.toColorInt())
+        backgroundColor = color.toColor()
     ) {
         Column(
             modifier = Modifier.padding(10.dp)

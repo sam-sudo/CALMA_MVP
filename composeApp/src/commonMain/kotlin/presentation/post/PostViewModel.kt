@@ -1,8 +1,6 @@
-package com.ck.calma.post
+package presentation.post
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.model.Post
 import domain.use_cases.GetPostsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +28,7 @@ class PostViewModel(
                     it.copy(posts = list)
                 }
             }.onLeft {
-                Log.e("TAG", "updatePosts: $it", )
+                println( "updatePosts: $it", )
             }
 
         }

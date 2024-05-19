@@ -21,8 +21,10 @@ fun App() {
         modules(getSharedModules())
     }.koin
     MaterialTheme {
-        PostScreen()
-
+        //PostScreen()
+        Navigator(screen = MainNavigationScreen()){navigator ->
+            SlideTransition(navigator)
+        }
     }
 }
 

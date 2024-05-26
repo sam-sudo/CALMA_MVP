@@ -8,8 +8,8 @@ import org.koin.core.context.startKoin
 class CalmaApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        startKoin {
+        /*startKoin {
             modules(appModule + getSharedModules())
-        }
+        }*/
     }
 }

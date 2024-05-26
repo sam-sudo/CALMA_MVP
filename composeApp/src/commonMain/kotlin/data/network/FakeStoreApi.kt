@@ -8,23 +8,22 @@ import io.ktor.http.takeFrom
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-private const val BASE_URL = "https://jsonplaceholder.typicode.com"
+private const val BASE_URL = "https://fakestoreapi.com"
 
-abstract class KtorApi{
+abstract class FakeStoreApi {
 
-    val client = HttpClient{
-        install(ContentNegotiation){
-            json(Json{
+    val client = HttpClient {
+        install(ContentNegotiation) {
+            json(Json {
                 ignoreUnknownKeys = true
             })
         }
     }
 
-    fun HttpRequestBuilder.pathUrl(path: String){
-        url{
+    fun HttpRequestBuilder.pathUrl(path: String) {
+        url {
             takeFrom(BASE_URL)
             path(path)
         }
     }
-
 }

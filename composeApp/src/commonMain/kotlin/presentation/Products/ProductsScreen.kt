@@ -1,4 +1,4 @@
-package presentation.post
+package presentation.Products
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -22,20 +20,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import data.util.toColor
 import domain.model.Post
+import domain.model.Product
 import domain.use_cases.GetPostsUseCase
+import domain.use_cases.GetProductsUseCase
 import utils.isDesktop
 
 @Composable
-fun PostScreen(
+fun ProductsScreen(
     tabNavigator: TabNavigator,
     modifier: Modifier = Modifier
 ) {
-    val viewModel: PostViewModel = PostViewModel(GetPostsUseCase())
+    val viewModel: ProductViewModel = ProductViewModel(GetProductsUseCase())
     val state = viewModel.uiState.collectAsState()
 
     Surface(
@@ -51,18 +50,18 @@ fun PostScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(state.value.posts){ post ->
-
+            items(state.value.posts){ product->
+                println("Items -> $product")
                 if(isDesktop()){
-                    PostItem(
+                    ProductItemDesktop(
                         color = "#2980B9",
-                        post = post
+                        product = product
                     )
                     Spacer(Modifier.height(10.dp))
                 }else{
-                    PostItem(
+                    ProductItem(
                         color = "#2980B9",
-                        post = post
+                        product = product
                     )
                     Spacer(Modifier.height(10.dp))
                 }
@@ -73,9 +72,9 @@ fun PostScreen(
 }
 
 @Composable
-fun PostItem(
+fun ProductItem(
     color: String,
-    post: Post,
+    product: Product,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -88,14 +87,14 @@ fun PostItem(
             modifier = Modifier.padding(10.dp)
         ) {
             Text(
-                text = post.title,
+                text = product.title,
                 style = MaterialTheme.typography.h6,
             )
 
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = post.body,
+                text = product.category,
                 style = MaterialTheme.typography.subtitle1,
             )
         }
@@ -103,9 +102,9 @@ fun PostItem(
 }
 
 @Composable
-fun PostItemDesktop(
+fun ProductItemDesktop(
     color: String,
-    post: Post,
+    product: Product,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -118,14 +117,14 @@ fun PostItemDesktop(
             modifier = Modifier.padding(10.dp)
         ) {
             Text(
-                text = post.title,
+                text = product.title,
                 style = MaterialTheme.typography.h6,
             )
 
             Spacer(Modifier.height(8.dp))
 
             Text(
-                text = post.body,
+                text = product.category,
                 style = MaterialTheme.typography.subtitle1,
             )
         }

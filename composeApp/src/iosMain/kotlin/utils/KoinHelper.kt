@@ -4,7 +4,7 @@ import di.getSharedModules
 import org.koin.core.context.startKoin
 
 fun initKoin(){
-    startKoin {
+    /*startKoin {
         modules(getSharedModules())
-    }.koin
+    }.koin*/
 }

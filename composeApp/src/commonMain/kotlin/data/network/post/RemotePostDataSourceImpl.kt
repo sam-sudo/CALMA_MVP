@@ -5,7 +5,7 @@ import domain.model.Post
 import kotlinx.coroutines.withContext
 import utils.Dispatcher
 
-class RemotePostDataSource(
+class RemotePostDataSourceImpl(
     private val api: PostService,
     private val dispatcher: Dispatcher,
 ): RemoteDataSource {

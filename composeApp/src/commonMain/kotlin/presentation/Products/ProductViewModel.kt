@@ -1,33 +1,34 @@
-package presentation.post
+package presentation.Products
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.use_cases.GetPostsUseCase
+import domain.use_cases.GetProductsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class PostViewModel(
-    private val getPostsUseCase: GetPostsUseCase
+class ProductViewModel(
+    private val getProductsUseCase: GetProductsUseCase
 ): ViewModel() {
 
-    private val _uiState = MutableStateFlow(PostState())
+    private val _uiState = MutableStateFlow(ProductState())
     val uiState = _uiState.asStateFlow()
 
     init {
-        updatePosts()
+        updateProducts()
     }
 
-    private fun updatePosts(){
+    private fun updateProducts(){
         viewModelScope.launch {
-            val posts = getPostsUseCase()
-            posts.onRight {
+            val products = getProductsUseCase()
+            products.onRight {
                 list ->
                 _uiState.update {
                     it.copy(posts = list)
                 }
             }.onLeft {
-                println( "updatePosts: $it", )
+                println( "updateProducts: $it", )
             }
 
         }

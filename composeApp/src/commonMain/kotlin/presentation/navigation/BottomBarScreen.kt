@@ -18,6 +18,7 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import presentation.navigation.tabs.ActivitiesTab
 import presentation.navigation.tabs.HomeTab
 import presentation.navigation.tabs.PostTab
+import presentation.navigation.tabs.ProductTab
 
 class BottomBarScreen : Screen {
 
@@ -29,7 +30,7 @@ class BottomBarScreen : Screen {
             tabDisposable = {
                 TabDisposable(
                     it,
-                    listOf(HomeTab, ActivitiesTab, PostTab)
+                    listOf(HomeTab, ActivitiesTab, PostTab, ProductTab)
                 )
             }
         ) {
@@ -43,6 +44,7 @@ class BottomBarScreen : Screen {
                         TabNavigationItem(HomeTab)
                         TabNavigationItem(ActivitiesTab)
                         TabNavigationItem(PostTab)
+                        TabNavigationItem(ProductTab)
                     }
                 },
 

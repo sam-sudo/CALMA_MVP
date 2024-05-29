@@ -12,7 +12,6 @@ class RemoteProductDataSourceImpl(
     override suspend fun getProducts(): List<Product> {
         return withContext(dispatcher.ioDispatcher){
             return@withContext api.getProducts().map {
-                print("aaaa -> $it")
                 it.asExternalModel()
             }
         }

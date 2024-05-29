@@ -1,16 +1,19 @@
 package presentation.Products
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -20,13 +23,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.seiko.imageloader.rememberImagePainter
 import data.util.toColor
 import domain.model.Post
 import domain.model.Product
 import domain.use_cases.GetPostsUseCase
 import domain.use_cases.GetProductsUseCase
+import org.jetbrains.compose.resources.painterResource
 import utils.isDesktop
 
 @Composable
@@ -50,20 +58,26 @@ fun ProductsScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(state.value.posts){ product->
-                println("Items -> $product")
+            itemsIndexed(state.value.posts){ index,product->
+                println("Índice: $index, Producto: $product")
+
                 if(isDesktop()){
-                    ProductItemDesktop(
+                    ProductCard(
                         color = "#2980B9",
                         product = product
                     )
                     Spacer(Modifier.height(10.dp))
                 }else{
-                    ProductItem(
-                        color = "#2980B9",
+                    ProductCard(
+                        color = "#a0a0a0",
                         product = product
                     )
                     Spacer(Modifier.height(10.dp))
+                }
+
+                //update when 2 left
+                if((index + 2) >= state.value.posts.size){
+                    viewModel.loadNextTenProducts(5)
                 }
             }
         }
@@ -72,60 +86,50 @@ fun ProductsScreen(
 }
 
 @Composable
-fun ProductItem(
-    color: String,
+fun ProductCard(
     product: Product,
-    modifier: Modifier = Modifier,
-) {
+    color: String = "#ffffff",
+    ) {
     Card(
-        modifier = modifier
-            .fillMaxSize()
-            .clip(RoundedCornerShape(10.dp)),
-        backgroundColor = color.toColor()
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        elevation = 8.dp,
+        backgroundColor = Color.Gray
     ) {
         Column(
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(16.dp)
         ) {
+            Image(
+                painter = rememberImagePainter(product.imgUrl),
+                contentDescription = "Product Image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = product.title,
                 style = MaterialTheme.typography.h6,
+                color = Color.Black,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
-
-            Spacer(Modifier.height(8.dp))
-
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = product.category,
+                text = "$${product.price}",
                 style = MaterialTheme.typography.subtitle1,
+                color = Color.Black
             )
-        }
-    }
-}
-
-@Composable
-fun ProductItemDesktop(
-    color: String,
-    product: Product,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        modifier = modifier
-            .fillMaxSize()
-            .clip(RoundedCornerShape(10.dp)),
-        backgroundColor = color.toColor()
-    ) {
-        Column(
-            modifier = Modifier.padding(10.dp)
-        ) {
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = product.title,
-                style = MaterialTheme.typography.h6,
-            )
-
-            Spacer(Modifier.height(8.dp))
-
-            Text(
-                text = product.category,
-                style = MaterialTheme.typography.subtitle1,
+                text = product.description,
+                style = MaterialTheme.typography.body2,
+                color = Color.Black,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

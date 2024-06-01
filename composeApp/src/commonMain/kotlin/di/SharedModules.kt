@@ -5,7 +5,7 @@ import data.network.post.PostService
 import data.network.post.RemoteDataSource
 import data.network.products.ProductService
 import data.network.products.RemoteProductDataSourceImpl
-import data.network.products.RemoteProductsDatasource
+import domain.repository.RemoteProductsDatasource
 import data.repository.PostRepositoryImpl
 import data.repository.ProductRepositoryImpl
 import domain.repository.PostRepository

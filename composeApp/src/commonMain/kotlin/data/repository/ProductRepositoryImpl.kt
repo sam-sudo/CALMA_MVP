@@ -1,7 +1,7 @@
 package data.repository
 
 import arrow.core.Either
-import data.network.products.RemoteProductsDatasource
+import domain.repository.RemoteProductsDatasource
 import domain.model.Product
 import domain.repository.ProductRepository
 

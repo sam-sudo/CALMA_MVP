@@ -1,4 +1,4 @@
-package data.network.products
+package domain.repository
 
 import domain.model.Product
 

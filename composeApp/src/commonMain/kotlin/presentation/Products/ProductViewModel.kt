@@ -18,7 +18,7 @@ class ProductViewModel(
     val defaultLimit = 10
     val defaultOffset = 0
     init {
-        loadProducts(5,1)
+        loadProducts(defaultLimit,defaultOffset)
     }
 
     private fun updateProducts(){
@@ -31,6 +31,7 @@ class ProductViewModel(
                 val elapsedTime = endTime - startTime
                 println("Tiempo de carga de updateProducts: $elapsedTime ms")
                 if(_uiState.value.posts != products){
+                    _uiState.value = _uiState.value.copy(postsArrayList = ArrayList(list))
                     _uiState.value = _uiState.value.copy(posts = list)
                     loadProducts(defaultLimit,defaultOffset)
                 }
@@ -44,7 +45,7 @@ class ProductViewModel(
     fun loadProducts(limit: Int, offSet: Int){
         println("-----loadProducts-----")
         val startTime = clockNow()
-        val products = _uiState.value.posts
+        val products = _uiState.value.postsArrayList
         if(products.isNotEmpty() && products.size > offSet){
             val listFiltered = products.subList(offSet,offSet + limit)
             val endTime = clockNow()
@@ -60,7 +61,7 @@ class ProductViewModel(
     fun loadNextTenProducts(limit: Int){
         println("-----loadNextTenProducts-----")
         val startTime = clockNow()
-        val products = _uiState.value.posts
+        val products = _uiState.value.postsArrayList
         val offSet = _uiState.value.offSet
         if(products.isNotEmpty() && products.size > offSet ){
             val listFiltered = products.subList(offSet,offSet + limit)
@@ -69,7 +70,7 @@ class ProductViewModel(
             println("Tiempo de carga del loadNextTenProducts: $elapsedTime ms")
             _uiState.update {
                 it.copy(
-                    posts = listFiltered,
+                    posts = it.posts + listFiltered,
                     offSet = offSet + limit
                 )
             }

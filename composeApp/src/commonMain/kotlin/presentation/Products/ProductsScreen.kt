@@ -121,7 +121,7 @@ fun ProductCard(
             modifier = Modifier.padding(16.dp)
         ) {
             Image(
-                painter = rememberImagePainter(product.imgUrl),
+                painter = rememberImagePainter(product.imgUrl ?: ""),
                 contentDescription = "Product Image",
                 modifier = Modifier
                     .fillMaxWidth()
@@ -130,7 +130,7 @@ fun ProductCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = product.title,
+                text = product.title ?: "Default title",
                 style = MaterialTheme.typography.h6,
                 color = Color.Black,
                 maxLines = 2,
@@ -144,7 +144,7 @@ fun ProductCard(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = product.description,
+                text = product.description?: "No description",
                 style = MaterialTheme.typography.body2,
                 color = Color.Black,
                 maxLines = 3,

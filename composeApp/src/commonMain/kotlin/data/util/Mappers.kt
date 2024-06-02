@@ -23,6 +23,30 @@ fun NetworkProduct.asExternalModel() = Product(
 
 )
 
+/*fun NetworkProduct.asExternalModel(): Product{
+    if(category == "productoA"){
+
+        return Product(
+            id = id,
+            title = title,
+            price = price,
+            description = description,
+            category = category,
+            imgUrl = image,
+            rating = rating,
+        )
+    }
+    return Product(
+        id = id,
+        title = title,
+        price = price,
+        description = description,
+        category = category,
+        imgUrl = image,
+        rating = rating,
+    )
+}*/
+
 fun String.toColor(): androidx.compose.ui.graphics.Color {
     return try {
         val colorLong = this.removePrefix("#").toLong(16)
